@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tp3</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <h1>TP JS AJAX JSON</h1>
+    <main>
+        <section class="form">
+            <h2>Form</h2>
+            <table>
+                <tr>
+                    <td>- Nom : </td>
+                    <td><input id="nom" type="text"></td>
+                </tr>
+                <tr>
+                    <td>- Prenom :</td>
+                    <td><input id="prenom" type="text"></td>
+                </tr>
+                <tr>
+                    <td>- Moyenne :</td>
+                    <td><input id="moyenne"  type="number"></td>
+                </tr>
+            </table>
+            <button id="btn">Ajouter</button>
+        </section>
+        <section class="nonAdmis">
+            <h2>Non Admis</h2>
+            <table class="t">
+               <thead>
+                    <tr>
+                        <th>NOM</th>
+                        <th>prenom</th>
+                        <th>Moyenne</th>
+                    </tr>
+               </thead>
+               <tbody id="tableNonAdmis">
+
+               </tbody>
+            </table>
+        </section>
+        <section class="admis">
+            <h2>Admis</h2>
+            <table class="t">
+               <thead>
+                    <tr>
+                        <th>NOM</th>
+                        <th>PRENOM</th>
+                        <th>Moyenne</th>
+                        <th>Appreciation</th>
+                    </tr>
+               </thead>
+               <tbody id="tableAdmis">
+
+               </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>@copyright 2021</footer>
+</body>
+</html>
