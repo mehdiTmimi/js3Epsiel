@@ -42,16 +42,32 @@ btn.onclick=function()
         alert("veuillez remplir tous les champs");
     else
     {
-        if(parseFloat(moyenne.value)>=10)
+        // envoyer les donnes au serveur
+
+        let ajax=new XMLHttpRequest();
+        ajax.open("post","http://localhost:3000/etudiants");
+        ajax.onreadystatechange= function()
         {
-            let s= addToTable1(nom.value,prenom.value,moyenne.value);
-            table2.innerHTML+=s;// table1.innerHTML=table1.innerHTML+s
+            if(ajax.status==201 && ajax.readyState==4)
+            {
+                if(parseFloat(moyenne.value)>=10)
+                {
+                    let s= addToTable1(nom.value,prenom.value,moyenne.value);
+                    table2.innerHTML+=s;// table1.innerHTML=table1.innerHTML+s
+                }
+                else{
+                    let res =addToTable2(nom.value,prenom.value,moyenne.value)
+                    table1.appendChild(res);
+                }
+                vider();
+            }
+            else if(ajax.readyState==4)
+                alert("erreur")
         }
-        else{
-            let res =addToTable2(nom.value,prenom.value,moyenne.value)
-            table1.appendChild(res);
-        }
-        vider();
+
+        ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        ajax.send(JSON.stringify({"nom":nom.value,"prenom":prenom.value,"moyenne":moyenne.value}))
+       
     }
 }
 function addToTable2(nom,prenom,moyenne)
