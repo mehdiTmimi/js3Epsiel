@@ -1,4 +1,36 @@
 let btn=document.getElementById("btn");
+
+// code qui va communiquer avec le web service
+let req=new XMLHttpRequest();
+req.open("GET","http://localhost:3000/etudiants");
+req.onreadystatechange=function()
+{
+    if(req.status==200 && req.readyState==4)
+    {
+       let reponse=JSON.parse(req.responseText);
+
+       /*console.log(" avant transformation :"+req.responseText)
+       console.log(" apres transformation :")
+       console.log(reponse[0].nom);
+       */
+       let table1=document.getElementById("tableNonAdmis");
+       let table2=document.getElementById("tableAdmis");
+        for(let i=0;i<reponse.length;i++)
+            {
+                let etudiant=reponse[i];
+                if(etudiant.moyenne>=10)
+                    {
+                        let s= addToTable1(etudiant.nom,etudiant.prenom,etudiant.moyenne);
+                        table2.innerHTML+=s;// table1.innerHTML=table1.innerHTML+s
+                    }
+                    else{
+                        let res =addToTable2(etudiant.nom,etudiant.prenom,etudiant.moyenne);
+                        table1.appendChild(res);
+                    }
+            }
+    }
+}
+req.send();
 btn.onclick=function()
 {
     let nom=document.getElementById("nom")
